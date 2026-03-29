@@ -267,3 +267,7 @@ GPL-2.0-or-later — see [LICENSE](LICENSE) for full text.
 
 - Images provided by [Pixabay](https://pixabay.com) via their free API
 - AI text generation powered by [OpenRouter](https://openrouter.ai)
+
+**Plugin Workflow**
+
+<img width="1440" height="2506" alt="image" src="https://github.com/user-attachments/assets/ce7d44dd-1a8d-4326-9657-6c30e79bd2c5" />

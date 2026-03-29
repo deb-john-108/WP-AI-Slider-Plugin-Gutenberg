@@ -1,0 +1,181 @@
+/* ============================================================
+   WP AI Slider — Admin Settings Styles
+   ============================================================ */
+
+/* Layout -------------------------------------------------- */
+.wpais-admin-page { box-sizing: border-box; }
+.wpais-admin-page *, .wpais-admin-page *::before, .wpais-admin-page *::after { box-sizing: inherit; }
+
+/* Header -------------------------------------------------- */
+.wpais-header {
+	background: linear-gradient(135deg, #5b5fc7 0%, #9b59b6 100%);
+	border-radius: 8px;
+	padding: 0;
+	margin-bottom: 24px;
+	overflow: hidden;
+	box-shadow: 0 4px 24px rgba(91, 95, 199, 0.25);
+}
+.wpais-header-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24px 28px;
+}
+.wpais-logo {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	color: #fff;
+}
+.wpais-logo .dashicons {
+	font-size: 42px;
+	width: 42px;
+	height: 42px;
+	opacity: .9;
+}
+.wpais-logo h1 {
+	margin: 0;
+	font-size: 24px;
+	font-weight: 700;
+	color: #fff;
+	line-height: 1.2;
+}
+.wpais-logo p {
+	margin: 4px 0 0;
+	font-size: 13px;
+	color: rgba(255,255,255,.8);
+}
+.wpais-version {
+	background: rgba(255,255,255,.2);
+	color: #fff;
+	padding: 4px 12px;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+/* Two-column layout --------------------------------------- */
+.wpais-layout {
+	display: flex;
+	gap: 24px;
+	align-items: flex-start;
+}
+.wpais-main { flex: 1 1 0; min-width: 0; }
+.wpais-sidebar { width: 300px; flex-shrink: 0; }
+
+/* Cards --------------------------------------------------- */
+.wpais-card {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	box-shadow: 0 1px 6px rgba(0,0,0,.06);
+	overflow: hidden;
+}
+.wpais-card-header {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 20px;
+	background: #fafafa;
+	border-bottom: 1px solid #e8e8e8;
+}
+.wpais-card-header .dashicons { font-size: 20px; width: 20px; height: 20px; color: #5b5fc7; }
+.wpais-card-header h2 {
+	flex: 1;
+	margin: 0;
+	font-size: 15px;
+	font-weight: 600;
+	color: #1d1d1d;
+}
+.wpais-card-header h2 em { font-weight: 400; color: #666; font-style: normal; }
+.wpais-card-body { padding: 20px; }
+.wpais-help { color: #555; font-size: 13px; margin: 0 0 16px; line-height: 1.6; }
+.wpais-help a { color: #5b5fc7; }
+
+/* Badges -------------------------------------------------- */
+.wpais-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 3px 10px;
+	border-radius: 12px;
+	font-size: 12px;
+	font-weight: 600;
+}
+.badge-ok   { background: #e6f9ee; color: #1a7f37; }
+.badge-warn { background: #fff5e6; color: #9a4700; }
+
+/* Form fields --------------------------------------------- */
+.wpais-field { margin-bottom: 16px; }
+.wpais-field label {
+	display: block;
+	font-weight: 600;
+	font-size: 13px;
+	margin-bottom: 6px;
+	color: #2d2d2d;
+}
+.wpais-input-row { display: flex; gap: 8px; align-items: center; }
+.wpais-key-input { flex: 1; }
+.wpais-toggle-vis { flex-shrink: 0; padding: 4px 8px !important; height: 32px; }
+.wpais-field .description { margin-top: 6px; font-size: 12px; color: #666; }
+
+/* Test rows ----------------------------------------------- */
+.wpais-test-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+	margin-top: 4px;
+}
+.wpais-test-result {
+	font-size: 13px;
+	font-weight: 600;
+	padding: 4px 10px;
+	border-radius: 4px;
+	display: inline-block;
+}
+.wpais-ok   { background: #e6f9ee; color: #1a7f37; }
+.wpais-fail { background: #fde8e8; color: #b91c1c; }
+
+/* Save bar ------------------------------------------------ */
+.wpais-save-bar {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 20px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	box-shadow: 0 1px 6px rgba(0,0,0,.06);
+}
+
+/* Status table -------------------------------------------- */
+.wpais-status-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.wpais-status-table td { padding: 7px 0; border-bottom: 1px solid #f0f0f0; }
+.wpais-status-table td:first-child { color: #555; }
+.wpais-status-table td:last-child  { text-align: right; }
+.wpais-tag {
+	display: inline-block;
+	background: #f0f0f7;
+	color: #444;
+	padding: 2px 8px;
+	border-radius: 4px;
+	font-size: 11px;
+	font-family: monospace;
+}
+
+/* How-to steps -------------------------------------------- */
+.wpais-steps { padding-left: 20px; margin: 0; }
+.wpais-steps li { margin-bottom: 12px; font-size: 13px; line-height: 1.6; color: #444; }
+.wpais-steps li strong { color: #222; }
+.wpais-steps li em { color: #5b5fc7; font-style: normal; }
+
+/* Spinner animation --------------------------------------- */
+.wpais-spin { animation: wpais-rotate 1s linear infinite; display: inline-block; }
+@keyframes wpais-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Responsive ---------------------------------------------- */
+@media (max-width: 900px) {
+	.wpais-layout { flex-direction: column; }
+	.wpais-sidebar { width: 100%; }
+}

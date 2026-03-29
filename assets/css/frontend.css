@@ -1,0 +1,282 @@
+/* ============================================================
+   WP AI Slider — Frontend Styles  v1.1.0
+   ============================================================ */
+
+/* ── Block wrapper (alignment) ────────────────────────────── */
+.wp-block-wp-ai-slider-slider {
+    display: block;
+    width: 100%;
+}
+
+.wp-block-wp-ai-slider-slider.alignfull {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+.wp-block-wp-ai-slider-slider.alignwide {
+    width: calc(100% + 160px);
+    max-width: calc(100% + 160px);
+    margin-left: -80px;
+    margin-right: -80px;
+}
+
+/* ── Slider wrapper ───────────────────────────────────────── */
+.wp-ai-slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #111;
+    -webkit-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    /* border-radius applied via inline style from block attribute */
+}
+
+/* ── Slide track ──────────────────────────────────────────── */
+.wp-ai-slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+    position: relative;
+}
+
+/* ── Individual slide ─────────────────────────────────────── */
+.wp-ai-slider-slide {
+    position: relative;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /*
+     * These three rules prevent the image from repeating and
+     * ensure it fills the slide correctly.
+     * background-image, background-size, background-repeat, and
+     * background-position are also set via inline style on each
+     * slide div in PHP — the inline style wins for background-image
+     * and background-size (which carries the imageFit value), while
+     * these rules provide the correct defaults.
+     */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* overridden by inline style when imageFit differs */
+}
+
+/* ── Fade animation mode ──────────────────────────────────── */
+.wp-ai-slider-wrapper[data-animation="fade"] .wp-ai-slider-track {
+    display: block;
+    position: relative;
+    height: 100%;
+}
+
+.wp-ai-slider-wrapper[data-animation="fade"] .wp-ai-slider-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+}
+
+.wp-ai-slider-wrapper[data-animation="fade"] .wp-ai-slider-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative; /* keeps the wrapper at full height */
+}
+
+/* ── Overlay via ::before pseudo-element ──────────────────── */
+/*
+ * Using ::before instead of a separate div so theme CSS rules like
+ * ".entry-content div { background: none }" can never strip the overlay.
+ * The rgba colour is passed as a CSS custom property (--wpais-overlay)
+ * set inline on the slide div from PHP, so opacity is always respected.
+ */
+.wp-ai-slider-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0; /* explicit fallback for older browsers */
+    z-index: 1;
+    background-color: var(--wpais-overlay, rgba(0,0,0,0.4));
+    pointer-events: none;
+}
+
+/* ── Text content ─────────────────────────────────────────── */
+.wp-ai-slider-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 3rem;
+    box-sizing: border-box;
+}
+
+/* ── Hero heading ─────────────────────────────────────────── */
+.wp-ai-slider-hero-text {
+    margin: 0 0 0.4em;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    /* color, font-family, font-size, font-weight, text-shadow
+       all set via inline style in PHP render */
+}
+
+/* ── Hero subtext ─────────────────────────────────────────── */
+.wp-ai-slider-hero-subtext {
+    margin: 0;
+    line-height: 1.55;
+    max-width: 70ch;
+    /* color, font-family, font-size, text-shadow
+       all set via inline style in PHP render */
+}
+
+/* ── Navigation arrows ────────────────────────────────────── */
+/*
+ * BUG FIX: previous versions targeted .wpais-prev / .wpais-next
+ * but PHP outputs .wp-ai-slider-prev / .wp-ai-slider-next.
+ * Both arrows were defaulting to left:auto/right:auto and stacking
+ * on the left side. Correct selectors below.
+ */
+.wp-ai-slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.65);
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+}
+
+.wp-ai-slider-arrow:hover,
+.wp-ai-slider-arrow:focus-visible {
+    background: rgba(0, 0, 0, 0.65);
+    border-color: #fff;
+    outline: none;
+}
+
+.wp-ai-slider-arrow:active {
+    transform: translateY(-50%) scale(0.92);
+}
+
+/* LEFT arrow — previous */
+.wp-ai-slider-prev {
+    left: 16px;
+    right: auto;
+}
+
+/* RIGHT arrow — next */
+.wp-ai-slider-next {
+    right: 16px;
+    left: auto;
+}
+
+/* ── Dot indicators ───────────────────────────────────────── */
+.wp-ai-slider-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wp-ai-slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.wp-ai-slider-dot:hover,
+.wp-ai-slider-dot:focus-visible {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.5);
+    outline: none;
+}
+
+.wp-ai-slider-dot.active {
+    background: #fff;
+    border-color: #fff;
+    transform: scale(1.25);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .wp-ai-slider-content {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .wp-ai-slider-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+
+    .wp-ai-slider-prev { left: 8px; }
+    .wp-ai-slider-next { right: 8px; }
+
+    .wp-block-wp-ai-slider-slider.alignwide {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .wp-ai-slider-arrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    .wp-ai-slider-dots {
+        bottom: 10px;
+        gap: 6px;
+    }
+
+    .wp-ai-slider-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .wp-ai-slider-track {
+        transition: none;
+    }
+
+    .wp-ai-slider-wrapper[data-animation="fade"] .wp-ai-slider-slide {
+        transition: none;
+    }
+}
